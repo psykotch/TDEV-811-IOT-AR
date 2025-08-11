@@ -2,7 +2,6 @@ import  mqtt  from "mqtt";
 const client = mqtt.connect("mqtt://localhost:1883");
 
 
-
 client.on('connect', () => {
   console.log('Connected')
 
@@ -20,3 +19,5 @@ client.on('connect', () => {
 client.on('message', (topic, payload) => {
   console.log('Received Message:', topic, payload.toString())
 })
+
+export default client
