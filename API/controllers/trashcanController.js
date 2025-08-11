@@ -24,8 +24,8 @@ export const getAllTrashcans = async (req, res, next) => {
     try {
         const trashcans = await getAllTrashcansService();
         handleResponse(res, 200, "Trashcans fetched", trashcans);
-    } catch (error) {
-        console.log(error.message);
+    } catch (err) {
+        next(err);
     }
 };
 
@@ -34,8 +34,8 @@ export const getTrashcanByTrashcanId = async (req, res, next) => {
         const trashcan = await getTrashcanByTrashcanIdService(req.params.trashcan_id);
         if (!trashcan) return handleResponse(res, 404, "Trashcan not found");
             handleResponse(res, 200, "Trashcan fetched", trashcans);
-    } catch (error) {
-        console.log(error.message);
+    } catch (err) {
+        next(err);
     }
 };
 
@@ -44,7 +44,7 @@ export const deleteTrashcan = async (req, res, next) => {
         const trashcan = await deleteTrashcanService(req.params.trashcan_id);
         if (!trashcan) return handleResponse(res, 404, "Trashcan not found");
         handleResponse(res, 200, "Trashcan deleted", deleteTrashcan);
-    } catch (error) {
-        console.log(error.message)
+    } catch (err) {
+        next(err);
     }
 };

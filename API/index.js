@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import  mqtt  from "mqtt";
 
 import pool from "./config/db.js";
 import trashcanRoutes from "./routes/trashcanRoutes.js"; 
@@ -9,6 +10,26 @@ import errorHandling from "./middlewares/errorHandler.js";
 dotenv.config();
 
 const app = express();
+
+const client = mqtt.connect("mqtt://localhost:1883");
+
+client.on('connect', () => {
+  console.log('Connected')
+
+  client.subscribe(["bonjour"], () => {
+    console.log("subscribed to topic bonjour");
+    client.publish("bonjour", 'nodejs mqtt test', { qos: 0, retain: false }, (error) => {
+      if (error) {
+        console.error(error)
+      }
+    })
+  })
+})
+
+
+client.on('message', (topic, payload) => {
+  console.log('Received Message:', topic, payload.toString())
+})
 
 // middlewares
 app.use(express.json());
