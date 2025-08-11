@@ -2,6 +2,7 @@
   "name": "mqtt_api",
   "version": "1.0.0",
   "main": "app.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -9,7 +10,17 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
     "express": "^5.1.0",
-    "mqtt": "^5.13.2"
+    "joi": "^18.0.0",
+    "mqtt": "^5.13.2",
+    "pg": "^8.16.3",
+    "pg-hstore": "^2.3.4",
+    "pg-promise": "^11.15.0",
+    "sequelize": "^6.37.7"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.6.3"
   }
 }

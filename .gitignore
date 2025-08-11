@@ -138,3 +138,6 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 API\package-lock.json
+
+
+/API/postgres-data
