@@ -11,14 +11,17 @@ dotenv.config();
 
 const app = express();
 
-const client = mqtt.connect("mqtt://localhost:1883");
+const client = mqtt.connect("mqtt://192.168.4.1:1883", {
+    username: "API",
+    password: "secret"
+});
 
 client.on('connect', () => {
   console.log('Connected')
 
-  client.subscribe(["bonjour"], () => {
+  client.subscribe(["picomqtt/esp-00:00:00:00:00:00"], () => {
     console.log("subscribed to topic bonjour");
-    client.publish("bonjour", 'nodejs mqtt test', { qos: 0, retain: false }, (error) => {
+    client.publish("picomqtt/esp-00:00:00:00:00:00", 'nodejs mqtt test', { qos: 0, retain: false }, (error) => {
       if (error) {
         console.error(error)
       }
